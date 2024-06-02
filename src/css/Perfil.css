@@ -1,0 +1,4 @@
+.bodyModalAgregarEmpresa {
+    max-height: 500px; /* Altura máxima del cuerpo del modal */
+    overflow-y: auto; /* Habilitar el desplazamiento vertical automático */
+  }

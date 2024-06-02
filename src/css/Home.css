@@ -1,0 +1,22 @@
+
+
+.home h4{
+    text-align: center;
+}
+
+
+.titleHOme{
+    text-align: center;
+    margin-top: 35px;
+    color: gray;
+}
+
+
+.cuponesContainer{
+    margin-top: 40px;
+    padding: 20px;
+
+    display: flex;
+
+    
+}
