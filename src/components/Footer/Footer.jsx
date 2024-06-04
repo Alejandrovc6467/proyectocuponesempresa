@@ -11,7 +11,7 @@ export default function Footer() {
         <li className="nav-item"><p className="nav-link px-2 text-body-secondary">Cupones</p> </li>
         <li className="nav-item"><p className="nav-link px-2 text-body-secondary">Perfil</p> </li>
       </ul>
-      <p className="text-center text-body-secondary">&copy; 2024 Universiad de Costa Rica</p>
+      <p className="text-center text-body-secondary">&copy; 2024 Universidad de Costa Rica</p>
     </footer>
   </div>
   );

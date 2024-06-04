@@ -24,17 +24,20 @@ const handleButtonClick = (id, updateCupones) => {
 };
 
 
-export default function Cupon({ id, precio, categoria, activo, imagen , updateCupones }) {
+
+
+export default function Cupon({ id, precio, categoria, fechaExpiracion,activo, imagen , updateCupones }) {
     return (
         <div className="cupon">
             <img src={imagen} alt="img" />
             <div className="infoCupon">
 
-                <p>precio: {precio}</p>
+                <p>precio: ₡{precio}</p>
                 <p>categoria: {categoria}</p>
                 <p>activo: {activo ? 'Sí' : 'No'}</p>
+                <p>fecha de expiración: {fechaExpiracion}</p>
                 <button className="btn btn-primary btn-sm" onClick={() => handleButtonClick(id, updateCupones)}>Actualizar Estado</button>
-
+               
             </div>
            
         </div>

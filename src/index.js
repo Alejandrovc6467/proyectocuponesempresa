@@ -11,6 +11,7 @@ import Login from './routes/Login';
 import Home from './routes/Home';
 import Cupones from './routes/Cupones';
 import Perfil from './routes/Perfil';
+import RestablecerContrasenia from './routes/RestablecerContrasenia';
 
 const router = createBrowserRouter([
 
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
     path: "/perfil/:id",
     element: <Perfil/>,
   },
+  {
+    path: "/RestablecerContrasenia/:id",
+    element: <RestablecerContrasenia/>,
+  }
 
 ]);
 

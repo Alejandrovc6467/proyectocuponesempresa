@@ -1,0 +1,12 @@
+.imgUrl-column {
+    max-width: 150px; /* Ajusta este valor según tus necesidades */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .imgUrl-column:hover {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow: auto;
+  }

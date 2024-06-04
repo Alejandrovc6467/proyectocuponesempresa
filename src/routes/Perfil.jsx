@@ -17,15 +17,15 @@ import '../css/Perfil.css';
 const Perfil = () => {
 
     const { id } = useParams();
-    const [data, setData] = useState([]);
+    const [data, setData] = useState({});
    
 
     useEffect(() => {
-        loadData();
-      }, []);
+        loadData(id);
+      }, [id]);
     
-    const loadData = () => {
-        fetch('http://localhost/ProyectoCupones/empresas.php')
+    const loadData = (id) => {
+        fetch(`http://localhost/ProyectoCupones/Empresas.php?id=${id}`)
           .then(response => response.json())
           .then(data => setData(data))
           .catch(error => console.error('Error:', error));
@@ -121,8 +121,8 @@ const Perfil = () => {
     const [modalActualizarShow, setModalActualizarShow] = useState(false);
     const [empresaSeleccionada, setEmpresaSeleccionada] = useState({});
 
-    const handleUpdate = (id) => {
-        const empresa = data.find(item => item.id === id);
+    const handleUpdate = (data) => {
+        const empresa = data;
         setEmpresaSeleccionada(empresa);
         setModalActualizarShow(true);
         
@@ -133,7 +133,7 @@ const Perfil = () => {
     const handleSubmitActualizarEmpresa = (empresaActualizada) => {
         console.log(empresaActualizada);
     
-        const data = {
+        const dataBody = {
         action: "update",
         id: empresaActualizada.id,
         nombre: empresaActualizada.nombre,
@@ -153,12 +153,12 @@ const Perfil = () => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(dataBody)
         })
         .then(response => response.json())
         .then(data => {
             console.log('Empresa updated:', data);
-            loadData();
+            loadData(dataBody.id);
         })
         .catch(error => console.error('Error:', error));
     
@@ -189,23 +189,21 @@ const Perfil = () => {
                         <th>Ubicación</th>
                         <th>Cedula</th>
                         <th>Fecha creacion</th>
-                        <th>Activo</th>
                         <th>Acción</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map(item => (
-                        <tr key={item.id}>
-                            <td>{item.id}</td>
-                            <td>{item.nombre}</td>
-                            <td>{item.descripcion}</td>
-                            <td>{item.telefono}</td>
-                            <td>{item.correo}</td>
-                            <td>{item.contrasenia}</td>
-                            <td>{item.ubicacion}</td>
-                            <td>{item.cedula}</td>
-                            <td>{item.fechaCreacion}</td>
-                            <td>{item.activo}</td>
+                        
+                        <tr>
+                            <td>{data.id}</td>
+                            <td>{data.nombre}</td>
+                            <td>{data.descripcion}</td>
+                            <td>{data.telefono}</td>
+                            <td>{data.correo}</td>
+                            <td>{data.contrasenia}</td>
+                            <td>{data.ubicacion}</td>
+                            <td>{data.cedula}</td>
+                            <td>{data.fechaCreacion}</td>
                             <td>
                             
                             <div className="containerButons">
@@ -213,7 +211,7 @@ const Perfil = () => {
                                 <button
                                 type="button"
                                 className="btn btn-warning btn-sm btnAcciones"
-                                onClick={() => handleUpdate(item.id)}
+                                onClick={() => handleUpdate(data)}
                                 >
                                 Actualizar
                                 </button>
@@ -223,7 +221,7 @@ const Perfil = () => {
                             
                             </td>
                         </tr>
-                        ))}
+                        
                     </tbody>
                 </table>
 
