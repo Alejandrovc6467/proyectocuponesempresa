@@ -3,7 +3,7 @@ import "./Menu.css";
 
 export default function Menu({ id }) {
   return (
-    <nav className="menu navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="menu navbar navbar-expand-lg bg-body-tertiary fixed-top">
       <div className="container-fluid">
         
         <Link to={`/home/${id}`} className="navbar-brand">CuponesUsuarioAdmin</Link>

@@ -175,7 +175,7 @@ const Perfil = () => {
             <Menu id={id} />
 
             <div className="container">
-                <p>Soy perfil  {id}</p>
+              <br /><br />
 
                 <table className="table table-striped table-hover">
                     <thead className="thead-dark">

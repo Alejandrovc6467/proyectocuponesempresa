@@ -104,10 +104,14 @@ const Home = () => {
                             <Cupon
                                 key={cupon.id}
                                 id={cupon.id}
+                                nombre= {cupon.nombre}
                                 precio={cupon.precio}
-                                categoria={cupon.categoria}
+                                precioConDescuento={cupon.precioConDescuento}
+                                descuento = {cupon.descuento}
+                                nombreCategoria={cupon.nombreCategoria}
                                 activo={cupon.activo}
                                 fechaExpiracion={cupon.fechaCaducado}
+                                fechaCaducidadPromocion= {cupon.fechaCaducidadPromocion}
                                 imagen={cupon.imagenUrl}
                                 updateCupones={updateCupones}
                                 addPromocion={updateCupones}

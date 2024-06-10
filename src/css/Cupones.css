@@ -10,3 +10,8 @@
     word-wrap: break-word;
     overflow: auto;
   }
+
+  .imgOnTable{
+    width: 50px;
+    border-radius: 10px;
+  }
