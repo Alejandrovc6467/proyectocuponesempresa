@@ -278,7 +278,8 @@ const Cupones = () => {
       id:nuevaPromocion.id,
       descuento: parseFloat(nuevaPromocion.descuento),
       fechaCaducado: nuevaPromocion.fechaCaducado,
-      fechaHabilitado: nuevaPromocion.fechaHabilitado
+      fechaHabilitado: nuevaPromocion.fechaHabilitado,
+      activo: nuevaPromocion.activo
     };
 
     console.log(dataPromocion);

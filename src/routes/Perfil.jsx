@@ -1,6 +1,8 @@
 import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
+import InputMask from 'react-input-mask';
+
 import Menu from "../components/Menu/Menu";
 import Footer from "../components/Footer/Footer";
 
@@ -48,6 +50,37 @@ const Perfil = () => {
     
         const handleSubmit = (e) => {
         e.preventDefault();
+
+
+        if (nombre.length > 10) {
+            setErrorNombre('El nombre no puede tener más de 10 caracteres');
+            return; // Salir de la función si hay un error
+          }
+        
+          // Validar contraseña
+          const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+          if (!passwordRegex.test(contrasenia)) {
+            setErrorContrasenia('La contraseña no cumple con los requerimientos');
+            return; // Salir de la función si hay un error
+          }
+        
+          // Validar cédula jurídica
+          const cedulaRegex = /^\d{2}-\d{3}-\d{6}$/;
+          if (!cedulaRegex.test(cedula)) {
+            setErrorCedula('La cédula jurídica debe tener el formato 00-000-000000');
+            return;
+          }
+        
+          // Validar teléfono
+          const telefonoRegex = /^\d{4}-\d{4}$/;
+          if (!telefonoRegex.test(telefono)) {
+            setErrorTelefono('El teléfono debe tener el formato 0000-0000');
+            return;
+          }
+
+
+
+
         onSubmit({
             id: empresa.id,
             nombre,
@@ -61,6 +94,15 @@ const Perfil = () => {
         });
         onHide();
         };
+
+
+
+        const [errorTelefono, setErrorTelefono] = useState('');
+        const [errorCedula, setErrorCedula] = useState('');
+        const [errorNombre, setErrorNombre] = useState('');
+        const [errorContrasenia, setErrorContrasenia] = useState('');
+
+
     
         return (
         <Modal className='modalAgregaEmpresa' {...restProps} onHide={onHide}
@@ -85,15 +127,17 @@ const Perfil = () => {
                 </div>
                 <div className="mb-3">
                 <label htmlFor="telefono" className="form-label">Teléfono</label>
-                <input type="tel" className="form-control" id="telefono" value={telefono} onChange={(e) => setTelefono(e.target.value)} />
+                <InputMask mask="9999-9999" value={telefono} onChange={(e) => setTelefono(e.target.value)} className="form-control" id="telefono" required/>
+                {errorTelefono && <div className="text-danger">{errorTelefono}</div>}
+               
                 </div>
                 <div className="mb-3">
                 <label htmlFor="correo" className="form-label">Correo</label>
                 <input type="email" className="form-control" id="correo" value={correo} onChange={(e) => setCorreo(e.target.value)} />
                 </div>
                 <div className="mb-3">
-                <label htmlFor="contrasenia" className="form-label">Contraseña</label>
-                <input type="password" className="form-control" id="contrasenia" value={contrasenia} onChange={(e) => setContrasenia(e.target.value)} />
+                <input type="password" className="form-control" id="contrasenia" value={contrasenia} onChange={(e) => setContrasenia(e.target.value)} required />
+                {errorContrasenia && <div className="text-danger">{errorContrasenia}</div>}
                 </div>
                 <div className="mb-3">
                 <label htmlFor="ubicacion" className="form-label">Ubicación</label>
@@ -101,7 +145,8 @@ const Perfil = () => {
                 </div>
                 <div className="mb-3">
                 <label htmlFor="cedula" className="form-label">Cedula Juridica</label>
-                <input type="text" className="form-control" id="cedula" value={cedula} onChange={(e) => setCedula(e.target.value)} />
+                <InputMask mask="99-999-999999" value={cedula} onChange={(e) => setCedula(e.target.value)} className="form-control" id="cedula" required/>
+                {errorCedula && <div className="text-danger">{errorCedula}</div>}
                 </div>
                 <div className="mb-3">
                 <label htmlFor="fechaCreacion" className="form-label">Fecha Creacion</label>
